@@ -24,5 +24,4 @@ while True:
         prev = previnputs[i]
         if curr and not prev:
             play(i)
-            print i
         previnputs[i] = curr
