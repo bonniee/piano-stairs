@@ -32,7 +32,10 @@ void loop() {
   for (int i = 0; i < numAnalogPins; i++) {
     int val = analogRead(analogPins[i]);
     if (val > thresholds[i] + absoluteThresh) {
-      Serial.print(i);
+      Serial.print(1);
+    }
+    else {
+      Serial.print(0);
     }
   }
   Serial.println();
