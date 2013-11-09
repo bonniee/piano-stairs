@@ -29,22 +29,20 @@ int loopCount = 0;
 
 void loop() {
   
-  int val = -1;
   for (int i = 0; i < numAnalogPins; i++) {
     int val = analogRead(analogPins[i]);
-
     if (val > thresholds[i] + absoluteThresh) {
-      Serial.print("STEP");
       Serial.print(i);
-      Serial.println();
     }
-    }
-  
-  loopCount = loopCount + 1;
-  if (loopCount >= reCalibrate) {
-    //Serial.println("calibrating");
-    //calibrate();
-    loopCount = 0;
   }
+  Serial.println();
   delay(250);
+  
+//  loopCount = loopCount + 1;
+//  if (loopCount >= reCalibrate) {
+//    //Serial.println("calibrating");
+//    //calibrate();
+//    loopCount = 0;
+//  }
+
 }
