@@ -15,6 +15,7 @@ previnputs = [False for a in range(0, numpins)]
 if onpi:
     ser = serial.Serial('/dev/ttyACMO', 9600)
 
+pygame.mixer.pre_init(channels=6, buffer=1024)
 pygame.mixer.init()
 
 letters = ["a", "b", "c", "d", "e", "f"]
