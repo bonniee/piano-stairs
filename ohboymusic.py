@@ -7,6 +7,9 @@ onpi = True
 
 numpins = 6
 
+# switch between piano and guitar every 3 minutes
+seconds = 3 * 60
+
 previnputs = [False for a in range(0, numpins)]
 
 if onpi:
@@ -27,9 +30,6 @@ def guitar(i):
 
 count = 0
 playguit = False
-
-# switch between piano and guitar every minute
-seconds = 60
 
 while True:
     count += 1
