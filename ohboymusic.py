@@ -13,7 +13,7 @@ seconds = 3 * 60
 previnputs = [False for a in range(0, numpins)]
 
 if onpi:
-    ser = serial.Serial('/dev/ttyACMO', 9600)
+    ser = serial.Serial('/dev/ttyACM0', 9600)
 
 pygame.mixer.pre_init(channels=6, buffer=1024)
 pygame.mixer.init()
@@ -45,8 +45,9 @@ while True:
         curr = line[i] != '0'
         prev = previnputs[i]
         if curr and not prev:
-            if playguit:
-                guitar(i)
-            else:
-                piano(i)
+            piano(i)
+            # if playguit:
+            #     guitar(i)
+            # else:
+            #     piano(i)
         previnputs[i] = curr
