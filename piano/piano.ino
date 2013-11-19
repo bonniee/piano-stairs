@@ -8,7 +8,7 @@ void setup() {
 float analogPins[] = {0, 1, 2, 3, 4, 5};
 int numAnalogPins = 6;
 int thresholds[6];
-float percentThresh = 1.02;
+float percentThresh = 1.10;
 int absoluteThresh = 40;
 
 void calibrate() {
@@ -31,21 +31,15 @@ void loop() {
   
   for (int i = 0; i < numAnalogPins; i++) {
     int val = analogRead(analogPins[i]);
+    //Serial.println(val);
+    //if (val > thresholds[i] * percentThresh) {
     if (val > thresholds[i] + absoluteThresh) {
       Serial.print(1);
     }
     else {
       Serial.print(0);
     }
-  }
+   }
   Serial.println();
-  delay(250);
-  
-//  loopCount = loopCount + 1;
-//  if (loopCount >= reCalibrate) {
-//    //Serial.println("calibrating");
-//    //calibrate();
-//    loopCount = 0;
-//  }
-
+  delay(50);
 }
