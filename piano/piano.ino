@@ -9,7 +9,7 @@ float analogPins[] = {0, 1, 2, 3, 4, 5};
 int numAnalogPins = 6;
 int thresholds[6];
 float percentThresh = 1.03;
-int absoluteThresh = 40;
+int absoluteThresh = 20;
 
 int sensorHistory[6][10];
 int bufferIndex = 0;
@@ -67,5 +67,5 @@ void loop() {
    }
   bufferIndex = (bufferIndex + 1) % 10;
   Serial.println();
-  delay(200);
+  delay(40);
 }
