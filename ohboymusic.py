@@ -18,8 +18,14 @@ if onpi:
 pygame.mixer.pre_init(channels=6, buffer=1024)
 pygame.mixer.init()
 
-letters = ["a", "b", "c", "d", "e", "f"]
-piano_notes = [pygame.mixer.Sound("notes/"+letter+".wav") for letter in letters]
+# 1 2 3   5 6    8
+# g a b c d e f# g
+# g a b   d e    g
+# c d e f g a b  c
+# 8 6 5 3 2 1
+letters = ["d", "e", "f", "g", "a", "b"]
+letters = letters[::-1]
+piano_notes = [pygame.mixer.Sound("piano-notes/"+letter+".wav") for letter in letters]
 guit_let = ["e", "a", "d", "g", "b", "e2"]
 guitar_notes = [pygame.mixer.Sound("guitar/"+letter+".wav") for letter in guit_let]
 
@@ -47,6 +53,7 @@ while True:
         line = raw_input()
     if len(line) < 6:
         continue
+    #line = line[::-1]
     for i in range(0, numpins):
         curr = line[i] != '0'
         prev = previnputs[i]
