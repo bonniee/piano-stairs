@@ -59,8 +59,10 @@ while True:
         prev = previnputs[i]
         if curr and not prev:
             piano(i)
-            #if playguit:
-            #    guitar(i)
-            #else:
-            #    piano(i)
+
+            # if playguit:
+            #     guitar(i)
+            # else:
+            #     piano(i)
         previnputs[i] = curr
+
