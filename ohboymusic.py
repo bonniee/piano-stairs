@@ -3,7 +3,7 @@ import pygame
 import serial
 import time
 
-onpi = False
+onpi = True
 
 pygame.mixer.pre_init(channels=6, buffer=1024)
 pygame.mixer.init()
