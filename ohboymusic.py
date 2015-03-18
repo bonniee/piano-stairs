@@ -53,16 +53,14 @@ while True:
         line = raw_input()
     if len(line) < 6:
         continue
-    #line = line[::-1]
-    for i in range(0, numpins):
+
+    for i in range(numpins):
         curr = line[i] != '0'
         prev = previnputs[i]
         if curr and not prev:
-            piano(i)
-
-            # if playguit:
-            #     guitar(i)
-            # else:
-            #     piano(i)
+            if playguit:
+                guitar(i)
+            else:
+                piano(i)
         previnputs[i] = curr
 
