@@ -10,7 +10,7 @@ numpins = 6
 # switch between piano and guitar every 3 minutes
 seconds = 3 * 60
 
-previnputs = [False for a in range(0, numpins)]
+previnputs = [False] * numpins
 
 if onpi:
     ser = serial.Serial('/dev/ttyACM0', 9600)
