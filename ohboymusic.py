@@ -21,7 +21,7 @@ class PianoStairs():
             self.ser = serial.Serial('/dev/ttyACM0', 9600)
         letters = ["d", "e", "f", "g", "a", "b"]
         letters = letters[::-1]
-        self.piano_notes = [pygame.mixer.Sound("piano-notes/"+letter+".wav") for letter in letters]
+        self.piano_notes = [pygame.mixer.Sound("samples/"+letter+".wav") for letter in letters]
 
     def piano(self, i):
         self.piano_notes[i].play()
