@@ -1,6 +1,7 @@
 /**
  * piano-sketch.ino
  * Author: Bonnie Eisenman
+ * twitter.com/brindelle
  *
  * Arduino-side code for taking in inputs from several sensors,
  * and if they pass the thresholds, send information to
@@ -12,12 +13,15 @@
  * which has only 6 analog inputs.
  **/
 
+int LED_PIN = 13;
+
 void setup() {
   Serial.begin(9600);
   calibrate();
+  pinMode(LED_PIN, OUTPUT);
 }
 
-float analogPins[] = {0, 1, 2, 3, 4, 5, 6, 7};
+float analogPins[] = {A0, A1, A2, A3, A4, A5, A6, A7};
 int numAnalogPins = 8;
 int thresholds[8];
 
@@ -71,10 +75,12 @@ void loop() {
     oldAvg = oldAvg / 10;
 
     if (val > oldAvg + absoluteThresh) {
-       Serial.print(1);
+       Serial.print("1);
+       digitalWrite(LED_PIN, HIGH);
     }
     else {
       Serial.print(0);
+      digitalWrite(LED_PIN, LOW);
     }
     sensorHistory[i][bufferIndex] = val;
    }
