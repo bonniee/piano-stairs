@@ -5,6 +5,11 @@
  * Arduino-side code for taking in inputs from several sensors,
  * and if they pass the thresholds, send information to
  * Serial for processing.
+ *
+ * This is meant to run on a Teensy, with 8 analog inputs.
+ * Make sure to adjust analogPins[] and numAnalogPins below
+ * if you want to run this on e.g. an Arduino Uno,
+ * which has only 6 analog inputs.
  **/
 
 void setup() {
@@ -12,21 +17,22 @@ void setup() {
   calibrate();
 }
 
-float analogPins[] = {0, 1, 2, 3, 4, 5};
-int numAnalogPins = 6;
-int thresholds[6];
+float analogPins[] = {0, 1, 2, 3, 4, 5, 6, 7};
+int numAnalogPins = 8;
+int thresholds[8];
 
-// These values can be tuned depending on sensor installation.
-float percentThresh = 1.03; // Not currently used
-int absoluteThresh = 20; // The actual threshold value used
+// This value can be tuned depending on sensor installation.
+// It will likely vary based on: ambient light conditions;
+// positioning of the sensors; resistor values used; etc.
+int absoluteThresh = 20;
 
 // Keep track of the last N x H sensor readings,
 // where N = number of inputs
 // and H = history length.
 // This allows us to do smoothing.
-int sensorHistory[6][10];
+int sensorHistory[8][10];
 
-// This is used to cycle through the previous array
+// This is used to cycle through the sensorHistory array
 // along the H dimension.
 int bufferIndex = 0;
 
@@ -37,7 +43,7 @@ void calibrate() {
   // Begin by accumulating several steps' worth of baseline data
   for (int curStep = 0; curStep < maxSteps; curStep++) {
     for (int pin = 0; pin < numAnalogPins; pin++) {
-       thresholds[pin] += analogRead(analogPins[pin]);   
+       thresholds[pin] += analogRead(analogPins[pin]);
     }
   }
 
