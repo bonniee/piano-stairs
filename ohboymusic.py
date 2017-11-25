@@ -1,13 +1,10 @@
-import pygame
 
 import serial
 import time
+import os
 
 # Switch this to false if debugging on a laptop
 READ_FROM_PI = True
-
-pygame.mixer.pre_init(channels=6, buffer=1024)
-pygame.mixer.init()
 
 class PianoStairs():
 
@@ -21,10 +18,10 @@ class PianoStairs():
             self.ser = serial.Serial('/dev/ttyACM0', 9600)
         letters = ["d", "e", "f", "g", "a", "b"]
         letters = letters[::-1]
-        self.piano_notes = [pygame.mixer.Sound("samples/"+letter+".wav") for letter in letters]
+        self.piano_notes = ["samples/"+letter+".wav" for letter in letters]
 
     def piano(self, i):
-        self.piano_notes[i].play()
+        os.system("omxplayer -o local " + self.piano_notes[i])
 
     def run(self):
         # Sleep while we wait for everything to boot up.
